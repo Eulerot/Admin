@@ -175,3 +175,296 @@ footer p {
   font-size: 16px;
   color: #555;
 }
+/* ========== АНИМАЦИИ ========== */
+
+/* Плавное появление страницы */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+main, .site-header {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Анимация заголовков */
+h1, h2 {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: slideDown 0.5s ease-out forwards;
+}
+
+@keyframes slideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Задержка для подзаголовков */
+h2 {
+  animation-delay: 0.1s;
+}
+
+/* Анимация карточек на главной */
+.info-box {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardFadeUp 0.6s ease-out forwards;
+}
+
+.info-box:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.info-box:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.info-box:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.info-box:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes cardFadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Плавное увеличение кнопок и ссылок при наведении */
+button, .info-box a, nav a {
+  transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover, .info-box a:hover {
+  transform: scale(1.05);
+}
+
+nav a:hover {
+  transform: translateY(-2px);
+}
+
+/* Анимация таблицы: строки появляются постепенно */
+table tbody tr {
+  opacity: 0;
+  animation: fadeRow 0.3s ease-out forwards;
+}
+
+table tbody tr:nth-child(1) { animation-delay: 0.05s; }
+table tbody tr:nth-child(2) { animation-delay: 0.1s; }
+table tbody tr:nth-child(3) { animation-delay: 0.15s; }
+table tbody tr:nth-child(4) { animation-delay: 0.2s; }
+table tbody tr:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes fadeRow {
+  from {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Эффект наведения для изображений */
+.image {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Анимация полей ввода и кнопок на формах */
+input, button {
+  transition: all 0.3s ease;
+}
+
+input:focus {
+  transform: scale(1.02);
+  border-color: #0071e3;
+  box-shadow: 0 0 0 3px rgba(0,113,227,0.2);
+  outline: none;
+}
+
+/* ========== БОЛЕЕ СЛОЖНЫЕ АНИМАЦИИ ========== */
+
+/* --- 1. Движущийся градиент в шапке --- */
+.site-header {
+  background: linear-gradient(135deg, #0071e3, #005bb5, #0071e3, #003d7a);
+  background-size: 300% 300%;
+  animation: gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- 2. Анимированное подчёркивание ссылок навигации --- */
+nav a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 50%;
+  background-color: #ffd966;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+nav a:hover {
+  color: #ffd966;
+}
+
+/* --- 3. 3D-эффект карточек при наведении --- */
+.info-box {
+  transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.info-box:hover {
+  transform: translateY(-12px) rotateX(5deg) rotateY(2deg);
+  box-shadow: 0 20px 30px -10px rgba(0,0,0,0.2);
+}
+
+/* --- 4. Пульсирующие кнопки --- */
+button, .info-box a {
+  transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover, .info-box a:hover {
+  animation: pulse 0.6s ease-in-out;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,113,227,0.3);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1.05); }
+}
+
+/* Эффект нажатия */
+button:active, .info-box a:active {
+  transform: scale(0.98);
+  transition: transform 0.05s;
+}
+
+/* --- 5. Зум с размытием для изображений --- */
+.image {
+  transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1), filter 0.4s ease, box-shadow 0.4s ease;
+}
+
+.image:hover {
+  transform: scale(1.05);
+  filter: blur(0.5px) brightness(1.02);
+  box-shadow: 0 15px 25px -8px rgba(0,0,0,0.2);
+}
+
+/* --- 6. Появление элементов при скролле (анимация с задержкой для разных блоков) --- */
+section, .hero, .info-boxes, .form-container, .intro, .why-containerization, .how-it-works, .use-cases, .pros-cons, .real-example, .conclusion, .implementation, table {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: scrollReveal 0.8s ease forwards;
+}
+
+/* Задержки для разных типов блоков (можно добавить классы, но для простоты используем общие правила) */
+.hero { animation-delay: 0.1s; }
+.info-boxes { animation-delay: 0.2s; }
+.intro { animation-delay: 0.1s; }
+.why-containerization { animation-delay: 0.2s; }
+.how-it-works { animation-delay: 0.3s; }
+.use-cases { animation-delay: 0.4s; }
+.pros-cons { animation-delay: 0.5s; }
+.real-example { animation-delay: 0.6s; }
+.conclusion { animation-delay: 0.7s; }
+.implementation { animation-delay: 0.2s; }
+table { animation-delay: 0.3s; }
+
+@keyframes scrollReveal {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- 7. Анимированная тень заголовков --- */
+h1, h2 {
+  transition: text-shadow 0.4s ease;
+}
+
+h1:hover, h2:hover {
+  text-shadow: 0 0 10px rgba(0,113,227,0.5), 0 0 20px rgba(0,113,227,0.3);
+}
+
+/* --- 8. Плавное появление футера --- */
+footer {
+  animation: slideUpFooter 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes slideUpFooter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- 9. Анимация появления пунктов списка --- */
+ul li {
+  opacity: 0;
+  transform: translateX(-10px);
+  animation: listItemFade 0.4s ease forwards;
+}
+
+ul li:nth-child(1) { animation-delay: 0.05s; }
+ul li:nth-child(2) { animation-delay: 0.1s; }
+ul li:nth-child(3) { animation-delay: 0.15s; }
+ul li:nth-child(4) { animation-delay: 0.2s; }
+ul li:nth-child(5) { animation-delay: 0.25s; }
+ul li:nth-child(6) { animation-delay: 0.3s; }
+ul li:nth-child(7) { animation-delay: 0.35s; }
+ul li:nth-child(8) { animation-delay: 0.4s; }
+ul li:nth-child(9) { animation-delay: 0.45s; }
+ul li:nth-child(10) { animation-delay: 0.5s; }
+
+@keyframes listItemFade {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Дополнительно: для списков внутри таблиц и других вложенных элементов, чтобы не было конфликтов */
+table ul li, .pros-cons ul li, .use-cases ul li {
+  animation: none; /* отключаем, чтобы не было двойной анимации */
+  opacity: 1;
+  transform: none;
+}
